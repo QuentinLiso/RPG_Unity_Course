@@ -7,6 +7,7 @@ public abstract class EntityState
 	protected string animBoolName;
 	protected Animator anim;
 	protected Rigidbody2D rb;
+	protected PlayerInputSet input;
 
 	public EntityState(Player player, StateMachine stateMachine, string animBoolName)
 	{
@@ -16,6 +17,7 @@ public abstract class EntityState
 
 		anim = player.anim;
 		rb = player.rb;
+		input = player.input;
 	}
 
 	// Called everytime the state is changed
@@ -27,7 +29,7 @@ public abstract class EntityState
 	// Run the logic of the state here
 	public virtual void Update()
 	{
-		Debug.Log("I run update of " + animBoolName);
+		anim.SetFloat("yVelocity", rb.linearVelocity.y);
 	}
 
 	// Called everytime we exit a state and change to a new one
